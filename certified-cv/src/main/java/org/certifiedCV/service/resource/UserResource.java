@@ -1,13 +1,13 @@
 /**
  * 
  */
-package org.certifiedCV.service;
+package org.certifiedCV.service.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.UriInfo;
 
-import org.certifiedCV.bo.IUserBO;
+import org.certifiedCV.manager.bo.IUserBO;
 import org.certifiedCV.persistence.model.User;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;

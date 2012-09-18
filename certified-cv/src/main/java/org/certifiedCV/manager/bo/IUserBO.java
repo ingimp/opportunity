@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.certifiedCV.bo;
+package org.certifiedCV.manager.bo;
 
 import java.util.ArrayList;
 
