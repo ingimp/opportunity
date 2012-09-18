@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.certifiedCV.persistence.entity;
+package org.certifiedCV.persistence.model;
 
 import java.io.Serializable;
 

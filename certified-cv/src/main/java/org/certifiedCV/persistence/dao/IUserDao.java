@@ -5,13 +5,13 @@ package org.certifiedCV.persistence.dao;
 
 import java.util.ArrayList;
 
-import org.certifiedCV.persistence.entity.User;
+import org.certifiedCV.persistence.model.User;
 
 /**
  * @author luca
  * 
  */
-public interface UserDao {
+public interface IUserDao {
 
 	public User getUser(String susername);
 

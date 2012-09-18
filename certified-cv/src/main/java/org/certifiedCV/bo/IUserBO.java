@@ -1,17 +1,17 @@
 /**
  * 
  */
-package org.certifiedCV.manager;
+package org.certifiedCV.bo;
 
 import java.util.ArrayList;
 
-import org.certifiedCV.persistence.entity.User;
+import org.certifiedCV.persistence.model.User;
 
 /**
  * @author luca
  * 
  */
-public interface UserManager {
+public interface IUserBO {
 
 	public User getUser(String susername);
 

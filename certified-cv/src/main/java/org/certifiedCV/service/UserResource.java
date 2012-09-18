@@ -7,8 +7,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.UriInfo;
 
-import org.certifiedCV.manager.UserManager;
-import org.certifiedCV.persistence.entity.User;
+import org.certifiedCV.bo.IUserBO;
+import org.certifiedCV.persistence.model.User;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
@@ -20,9 +20,9 @@ public class UserResource {
 
 	protected String userName;
 	protected UriInfo uriInfo;
-	protected UserManager userManager;
+	protected IUserBO userManager;
 
-	public UserResource(UriInfo uriInfo, UserManager userManager,
+	public UserResource(UriInfo uriInfo, IUserBO userManager,
 			String userName) {
 		this.uriInfo = uriInfo;
 		this.userName = userName;
