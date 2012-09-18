@@ -4,6 +4,8 @@ create table address if not exists (
 	city varchar(50) not null,
 	state varchar(50) not null,
 	zipcode varchar(10) not null
+	ts_created timestamp default '0000-00-00 00:00:00';
+	ts_updated timestamp default now() on update now();
 	
 ) TYPE=InnoDB;
 
@@ -17,6 +19,8 @@ create table if not exists Customer (
 	address int not null foreign key (address) references address(id)
 	on delete cascade on update cascade;
 	index address_idx(address),
+	ts_created timestamp default '0000-00-00 00:00:00';
+	ts_updated timestamp default now() on update now();
 	
 
 ) TYPE=InnoDB;
