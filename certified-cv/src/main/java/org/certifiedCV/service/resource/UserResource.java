@@ -22,8 +22,7 @@ public class UserResource {
 	protected UriInfo uriInfo;
 	protected IUserBO userManager;
 
-	public UserResource(UriInfo uriInfo, IUserBO userManager,
-			String userName) {
+	public UserResource(UriInfo uriInfo, IUserBO userManager, String userName) {
 		this.uriInfo = uriInfo;
 		this.userName = userName;
 		this.userManager = userManager;
@@ -34,10 +33,10 @@ public class UserResource {
 	public JSONObject getUser() throws JSONException {
 		JSONObject obj = new JSONObject();
 		User user = this.userManager.getUser(userName);
-		if (user != null) {
-			obj.put("userName", user.getUserName()).put("email",
-					user.getEmail());
-		}
+		// if (user != null) {
+		// obj.put("userName", user.getUserName()).put("email",
+		// user.getEmail());
+		// }
 		return obj;
 	}
 

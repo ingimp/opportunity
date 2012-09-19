@@ -4,6 +4,8 @@
 package org.certifiedCV.persistence.model;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.MappedSuperclass;
 
@@ -19,50 +21,9 @@ public abstract class Customer implements Serializable {
 	protected int ID;
 	protected String userName;
 	protected String password;
-
-	/**
-	 * @return the iD
-	 */
-	public int getID() {
-		return ID;
-	}
-
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(int iD) {
-		ID = iD;
-	}
-
-	/**
-	 * @return the userName
-	 */
-	public String getUserName() {
-		return userName;
-	}
-
-	/**
-	 * @param userName
-	 *            the userName to set
-	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-
-	/**
-	 * @param password
-	 *            the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	protected String email;
+	protected List<Address> addresses;
+	protected Date dateCreated;
+	protected Date dateUpdated;
 
 }

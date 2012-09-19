@@ -49,7 +49,7 @@ create table if not exists customer (
 	
 ) Engine = InnoDB;
 
-create table if not exists customer_certied_cV (
+create table if not exists customer_certified_cv (
 	customer int not null,
 	certified_cv int not null,
 	foreign key (customer) references customer(id)
