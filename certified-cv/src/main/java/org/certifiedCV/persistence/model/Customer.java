@@ -5,15 +5,23 @@ package org.certifiedCV.persistence.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -30,20 +38,22 @@ public abstract class Customer implements Serializable {
 
     private static final long serialVersionUID = 7532693621934209772L;
 
-    protected int id;
+    protected long id;
     protected String userName;
     protected String password;
     protected String email;
-    protected List<Address> addresses;
+    protected Set<Address> addresses;
     protected Date dateCreated;
     protected Date dateUpdated;
 
+    @Id
+    @GeneratedValue
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
 	return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
 	this.id = id;
     }
 
@@ -74,16 +84,18 @@ public abstract class Customer implements Serializable {
 	this.email = email;
     }
 
-    @Column(name = "address")
-    public List<Address> getAddresses() {
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name = "customer_address", joinColumns = { @JoinColumn(name = "id_customer") }, inverseJoinColumns = { @JoinColumn(name = "id_address") })
+    public Set<Address> getAddresses() {
 	return addresses;
     }
 
-    public void setAddresses(List<Address> addresses) {
+    public void setAddresses(Set<Address> addresses) {
 	this.addresses = addresses;
     }
 
-    @Column(name = "ts_created")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="ts_created")
     public Date getDateCreated() {
 	return dateCreated;
     }
@@ -92,7 +104,8 @@ public abstract class Customer implements Serializable {
 	this.dateCreated = dateCreated;
     }
 
-    @Column(name = "ts_updated")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="ts_updated")
     public Date getDateUpdated() {
 	return dateUpdated;
     }

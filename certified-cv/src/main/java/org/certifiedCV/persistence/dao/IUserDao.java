@@ -3,8 +3,11 @@
  */
 package org.certifiedCV.persistence.dao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
+import org.certifiedCV.exception.DataAccessLayerException;
 import org.certifiedCV.persistence.model.User;
 
 /**
@@ -13,10 +16,12 @@ import org.certifiedCV.persistence.model.User;
  */
 public interface IUserDao {
 
-	public User getUser(String susername);
+	public User getUser(String userName) throws DataAccessLayerException;
 
-	public void addUser(User user);
+	public Serializable addUser(User user);
 
-	public ArrayList<User> getAllUsers();
+	public List<User> getAllUsers() throws DataAccessLayerException;
+	
+	public void delete(User user);
 
 }

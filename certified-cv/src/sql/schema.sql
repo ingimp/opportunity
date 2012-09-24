@@ -13,24 +13,6 @@ create table if not exists address (
 	
 ) Engine = InnoDB;
 
-create table if not exists certified_cv (
-	id int not null primary key auto_increment,
-	cod varchar(16) not null,
-	index cod_cv_idx(cod),
-	ts_updated timestamp,
-	ts_created timestamp
-	
-) Engine = InnoDB;
-
-create table if not exists company_card(
-	id int not null primary key auto_increment,
-	cod varchar(16) not null,
-	index cod_card_idx(cod),
-	ts_updated timestamp,
-	ts_created timestamp
-	
-) Engine = InnoDB;
-
 create table if not exists customer (
 	id int not null primary key auto_increment,
 	type_customer varchar(20) not null,
@@ -41,21 +23,44 @@ create table if not exists customer (
 	company_name varchar(250) default null,
 	p_iva varchar(11) default null,
 	email varchar(250) not null,
-	address int not null,
-	company_card int not null,
-	certified_cv int not null,
 	ts_updated timestamp,
-	ts_created timestamp,
-	foreign key (address) references address(id)
-	on update cascade on delete cascade,
-	foreign key (certified_cv) references certified_cv(id)
-	on delete cascade on update cascade,
-	foreign key (company_card) references customer(id)
-	on delete cascade on update cascade,
-	index cv_idx(certified_cv),
-	index address_idx(address),
-	index card_idx (company_card)
+	ts_created timestamp
 
+) Engine = InnoDB;
+
+create table if not exists certified_cv (
+	id int not null primary key auto_increment,
+	cod varchar(16) not null,
+	customer_id int not null,
+	foreign key (customer_id) references customer(id)
+	on delete cascade on update cascade,
+	index cod_cv_idx(cod),
+	ts_updated timestamp,
+	ts_created timestamp
+	
+) Engine = InnoDB;
+
+create table if not exists company_card(
+	id int not null primary key auto_increment,
+	cod varchar(16) not null,
+	customer_id int not null,
+	foreign key (customer_id) references customer(id)
+	on delete cascade on update cascade,
+	index cod_card_idx(cod),
+	ts_updated timestamp,
+	ts_created timestamp
+	
+) Engine = InnoDB;
+
+
+create table if not exists customer_address (
+	id_customer int not null,
+	id_address int not null,
+	foreign key (id_customer) references customer(id)
+	on delete cascade on update cascade,
+	foreign key (id_address) references address(id)
+	on delete cascade on update cascade,
+	primary key (id_customer, id_address)
 	
 ) Engine = InnoDB;
 
